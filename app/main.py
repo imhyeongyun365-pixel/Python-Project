@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from pathlib import Path
+
 app = FastAPI()
 
 
@@ -27,3 +28,10 @@ async def read_items(request:Request,q:str):
         {"keyword":q}
     )
 
+@app.on_event("startup")
+async def on_app_start():
+    print("hello server")
+
+@app.on_event("shutdown")
+async def on_app_shutdown():
+    print("goodbye server")
