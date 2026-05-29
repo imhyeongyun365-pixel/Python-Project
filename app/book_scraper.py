@@ -18,8 +18,8 @@ class NaverBookScraper:
         return{
             "url":f"{self.NAVER_API_BOOK}?query={keyword}&display=10&start={start}",
             "headers":{
-                "X-Naver-Client-Id:":self.NAVER_API_ID,
-                "X-Naver-Client-Secret:":self.NAVER_API_SECERT
+                "X-Naver-Client-Id":self.NAVER_API_ID,
+                "X-Naver-Client-Secret":self.NAVER_API_SECERT
             },
         }
     

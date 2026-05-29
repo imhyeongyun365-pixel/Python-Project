@@ -47,7 +47,7 @@ async def read_items(request:Request,q:str):
         BookModel.is_favorite==True
     )
 
-    favorite_images = [book.image for Book in favorite_books]
+    favorite_images = [book.image for book in favorite_books]
 
     book_models=[]
 
@@ -105,12 +105,12 @@ async def toggle_favorite(
 
     return RedirectResponse(url=next_url,status_code=303)
 
-@app.get("/favorite",response_class=HTMLResponse)
+@app.get("/favorites",response_class=HTMLResponse)
 async def favorites(request:Request):
-    books = await mongodb.engine.find(BookModel.BookModel.is_favorite==True)
+    books = await mongodb.engine.find(BookModel,BookModel.is_favorite==True)
 
     return templates.TemplateResponse(
-        request=Request,
+        request=request,
         name="index.html",
         context={
             "title":"즐겨찾기 목록",
